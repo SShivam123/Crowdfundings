@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 contract Crowdfunding {
@@ -38,5 +39,18 @@ contract Crowdfunding {
 
         contributions[msg.sender] = 0;
         payable(msg.sender).transfer(amount);
+    }
+
+    function getCampaignDetails() external view returns (
+        address _owner,
+        uint _goal,
+        uint _deadline,
+        uint _totalRaised
+    ) {
+        return (owner, goal, deadline, totalRaised);
+    }
+
+    function getContributorAmount(address contributor) external view returns (uint) {
+        return contributions[contributor];
     }
 }
